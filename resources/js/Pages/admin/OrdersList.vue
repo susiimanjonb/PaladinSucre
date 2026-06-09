@@ -169,6 +169,30 @@
         </div>
       </div>
     </Modal>
+
+    <!-- Modal Confirmación de Pago -->
+    <Modal :show="showConfirmModal" title="Confirmar Verificación de Pago" maxWidth="md" @close="showConfirmModal = false">
+      <div class="p-6 text-center">
+        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-amber-100 mb-4">
+          <svg class="h-6 w-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mb-2">¿Verificar este pago?</h3>
+        <p class="text-sm text-gray-500 mb-6">
+          ¿Estás seguro de que deseas verificar este pago? Esta acción no se puede deshacer y marcará el pago del pedido como aprobado.
+        </p>
+        <div class="flex justify-center gap-3">
+          <button @click="showConfirmModal = false" class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium text-sm transition">
+            Cancelar
+          </button>
+          <button @click="executePaymentVerification" :disabled="verifyingPayment" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium text-sm transition flex items-center gap-2">
+            <span v-if="verifyingPayment" class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+            Aprobar Pago
+          </button>
+        </div>
+      </div>
+    </Modal>
   </div>
 </template>
 
@@ -275,15 +299,20 @@ const updateStatus = async () => {
     }
 };
 
-const verifyPayment = async () => {
-    if (!confirm('¿Estás seguro de que deseas verificar este pago? Esta acción no se puede deshacer.')) return;
-    
+const showConfirmModal = ref(false);
+
+const verifyPayment = () => {
+    showConfirmModal.value = true;
+};
+
+const executePaymentVerification = async () => {
     verifyingPayment.value = true;
     try {
         const { data } = await verifyAdminPayment(selectedOrder.value.id);
         selectedOrder.value.payment_status = data.payment_status;
         selectedOrder.value.status = data.status;
         updateStatusValue.value = data.status;
+        showConfirmModal.value = false;
         alert(data.message);
         fetchOrders(meta.value?.current_page || 1);
     } catch (e) {
