@@ -83,6 +83,15 @@
             <button @click="updateStatus" :disabled="updatingStatus || updateStatusValue === selectedOrder.status" class="btn-primary text-sm py-2">
                {{ updatingStatus ? '...' : 'Guardar' }}
             </button>
+
+            <transition name="fade">
+              <span v-if="statusSuccessMessage" class="bg-green-100 text-green-800 px-3 py-2 rounded-lg text-xs font-semibold flex items-center gap-1 border border-green-200 shadow-sm animate-bounce">
+                <svg class="w-4 h-4 text-green-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {{ statusSuccessMessage }}
+              </span>
+            </transition>
           </div>
         </div>
 
@@ -129,6 +138,15 @@
               >
                  {{ verifyingPayment ? '...' : 'Aprobar Pago' }}
               </button>
+
+              <transition name="fade">
+                <span v-if="successMessage" class="bg-green-100 text-green-800 px-3 py-2 rounded-lg text-xs font-semibold flex items-center gap-1 border border-green-200 ml-2 shadow-sm animate-bounce">
+                  <svg class="w-4 h-4 text-green-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {{ successMessage }}
+                </span>
+              </transition>
             </div>
         </div>
 
@@ -225,6 +243,8 @@ const handleFileUpload = (event) => {
     selectedFile.value = file;
 };
 
+const successMessage = ref('');
+
 const uploadProof = async () => {
     if (!selectedFile.value || !selectedOrder.value) return;
 
@@ -236,7 +256,10 @@ const uploadProof = async () => {
         const { data } = await uploadAdminPaymentProof(selectedOrder.value.id, formData);
         selectedOrder.value.payment_proof_url = data.payment_proof_url;
         selectedFile.value = null;
-        alert('¡Comprobante subido correctamente!');
+        
+        successMessage.value = '¡Comprobante subido correctamente!';
+        setTimeout(() => { successMessage.value = ''; }, 4000);
+        
         fetchOrders(meta.value?.current_page || 1);
     } catch (e) {
         console.error(e);
@@ -260,6 +283,8 @@ const fetchOrders = async (page = 1) => {
 };
 
 const openOrderDetails = async (id) => {
+    successMessage.value = '';
+    statusSuccessMessage.value = '';
     showModal.value = true;
     loadingDetails.value = true;
     selectedOrder.value = null;
@@ -280,8 +305,12 @@ const closeModal = () => {
         selectedOrder.value = null;
         updateStatusValue.value = '';
         selectedFile.value = null;
+        successMessage.value = '';
+        statusSuccessMessage.value = '';
     }, 300);
 };
+
+const statusSuccessMessage = ref('');
 
 const updateStatus = async () => {
     updatingStatus.value = true;
@@ -289,6 +318,10 @@ const updateStatus = async () => {
         await updateOrderStatus(selectedOrder.value.id, updateStatusValue.value);
         // Refresh local data
         selectedOrder.value.status = updateStatusValue.value;
+        
+        statusSuccessMessage.value = '¡Estado actualizado!';
+        setTimeout(() => { statusSuccessMessage.value = ''; }, 4000);
+        
         // Refresh list
         fetchOrders(meta.value?.current_page || 1);
     } catch (e) {
@@ -313,7 +346,10 @@ const executePaymentVerification = async () => {
         selectedOrder.value.status = data.status;
         updateStatusValue.value = data.status;
         showConfirmModal.value = false;
-        alert(data.message);
+        
+        successMessage.value = '¡Pago verificado correctamente!';
+        setTimeout(() => { successMessage.value = ''; }, 4000);
+        
         fetchOrders(meta.value?.current_page || 1);
     } catch (e) {
         console.error(e);
