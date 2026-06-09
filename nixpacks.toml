@@ -17,5 +17,4 @@ cmds = [
 
 [start]
 # El proveedor de PHP de Nixpacks arranca Nginx automáticamente sirviendo la carpeta public/
-# Pero antes de arrancar, queremos asegurarnos de optimizar Laravel y opcionalmente correr migraciones.
-cmd = "php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan serve --host 0.0.0.0 --port $PORT"
+cmd = "php artisan migrate --force && php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan serve --host 0.0.0.0 --port $PORT"
