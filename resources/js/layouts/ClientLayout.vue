@@ -15,7 +15,7 @@
 
       <!-- Navigation -->
       <nav :class="[menuOpen ? 'block' : 'hidden md:block', 'flex-1 py-6 px-4 space-y-2 bg-white']">
-        <router-link :to="{ name: 'client.dashboard' }" @click="menuOpen = false" class="flex items-center px-4 py-3 rounded-xl transition-all duration-200 text-gray-600 hover:bg-orange-50 hover:text-[#8B1A1A] group" active-class="!bg-gradient-to-r !from-[#8B1A1A] !to-[#B91C1C] !text-white shadow-md shadow-red-900/20">
+        <router-link :to="{ name: 'client.dashboard' }" @click="menuOpen = false" class="flex items-center px-4 py-3 rounded-xl transition-all duration-200 group" :class="[route.name === 'client.dashboard' ? '!bg-gradient-to-r !from-[#8B1A1A] !to-[#B91C1C] !text-white shadow-md shadow-red-900/20' : 'text-gray-600 hover:bg-orange-50 hover:text-[#8B1A1A]']">
           <svg class="w-5 h-5 shrink-0 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
           <span class="ml-3 font-medium">Dashboard</span>
         </router-link>
@@ -76,11 +76,12 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useAuth } from '../stores/auth.js';
 import { useCart } from '../stores/cart.js';
 import { logout } from '../api/auth.js';
 
+const route = useRoute();
 const router = useRouter();
 const { state, clearUser } = useAuth();
 const { totalItems } = useCart();
@@ -93,7 +94,7 @@ const handleLogout = async () => {
         console.error(error);
     } finally {
         clearUser();
-        router.push({ name: 'home' });
+        router.push({ name: 'login' });
     }
 };
 </script>
