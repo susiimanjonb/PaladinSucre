@@ -7,9 +7,7 @@
           <!-- Logo -->
           <div class="flex-shrink-0 flex items-center">
             <router-link :to="{ name: 'home' }" class="flex items-center gap-2">
-              <span class="font-playfair text-2xl font-bold text-white tracking-wide">
-                <span class="text-[#D4A574]">Paladín</span> Sucre
-              </span>
+              <img :src="'/images/logo.png'" alt="Paladín Sucre" class="h-16 w-auto object-contain" />
             </router-link>
           </div>
 
