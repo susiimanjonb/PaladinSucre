@@ -6,7 +6,7 @@
       <div class="h-20 flex items-center justify-between md:justify-center px-6 border-b border-gray-100 hero-gradient relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmYiLz48L3N2Zz4=')]"></div>
         <router-link :to="{ name: 'home' }" class="flex items-center gap-2 relative z-10">
-          <span class="font-playfair text-xl font-bold text-white">Mi <span class="text-[#D4A574]">Cuenta</span></span>
+          <img :src="'/images/logo.png'" alt="Paladín Sucre" class="h-12 w-auto object-contain drop-shadow-md" />
         </router-link>
         <button @click="menuOpen = !menuOpen" class="md:hidden text-white focus:outline-none relative z-10">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
