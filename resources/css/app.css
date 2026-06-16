@@ -196,7 +196,7 @@ body {
 /* Social float */
 .social-float {
     position: fixed;
-    bottom: 1.5rem;
+    bottom: 6.5rem;
     right: 1.5rem;
     z-index: 50;
 }
