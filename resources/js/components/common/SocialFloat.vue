@@ -17,25 +17,15 @@
          class="w-12 h-12 rounded-full bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform animate-fadeInUp" style="animation-delay: 0.17s">
         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
       </a>
-      <!-- Messenger -->
-      <a href="https://messenger.com" target="_blank" rel="noopener noreferrer" 
-         class="w-12 h-12 rounded-full bg-gradient-to-tr from-[#00C6FF] to-[#0072FF] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform animate-fadeInUp" style="animation-delay: 0.2s">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.044 0 11.267c0 3.52 1.764 6.643 4.52 8.665v4.068l4.137-2.274a12.634 12.634 0 003.343.454c6.627 0 12-5.044 12-11.267C24 5.044 18.627 0 12 0zm1.18 15.02l-3.03-3.237-5.918 3.237 6.505-6.906 3.09 3.237 5.86-3.237-6.507 6.906z"/></svg>
-      </a>
-      <!-- Telegram -->
-      <a href="https://telegram.org" target="_blank" rel="noopener noreferrer" 
-         class="w-12 h-12 rounded-full bg-[#0088CC] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform animate-fadeInUp" style="animation-delay: 0.25s">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-      </a>
       <!-- TikTok -->
-      <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" 
-         class="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform animate-fadeInUp" style="animation-delay: 0.3s">
+      <a href="https://www.tiktok.com/@embutidos_paladin?_r=1&_t=ZS-97DhstSUkA0" target="_blank" rel="noopener noreferrer" 
+         class="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform animate-fadeInUp" style="animation-delay: 0.2s">
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 448 512"><path d="M448 209.91a210.06 210.06 0 01-122.77-39.25v178.72A162.55 162.55 0 11185 188.31v89.89a74.62 74.62 0 1052.23 71.18V0h88a121.18 121.18 0 001.86 22.17h.12A122.18 122.18 0 00448 81.08v128.83z"/></svg>
       </a>
     </div>
 
     <!-- Botón principal -->
-    <button @click="isOpen = !isOpen" class="social-float-btn bg-gradient-to-r from-[#25D366] to-[#128C7E]">
+    <button @click.stop.prevent="isOpen = !isOpen" class="social-float-btn bg-gradient-to-r from-[#25D366] to-[#128C7E]">
       <svg v-if="!isOpen" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
       <svg v-else class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
     </button>
