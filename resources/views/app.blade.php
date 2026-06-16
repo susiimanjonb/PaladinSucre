@@ -29,20 +29,18 @@
     <body class="font-sans antialiased">
         <div id="app"></div>
 
-        @if(env('TAWK_TO_PROPERTY_ID'))
         <!--Start of Tawk.to Script-->
         <script type="text/javascript">
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
         (function(){
         var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
         s1.async=true;
-        s1.src='https://embed.tawk.to/{{ env('TAWK_TO_PROPERTY_ID') }}/{{ env('TAWK_TO_WIDGET_ID', 'default') }}';
+        s1.src='https://embed.tawk.to/6a310d9bae39691d46edcc40/1jr7pq9pg';
         s1.charset='UTF-8';
         s1.setAttribute('crossorigin','*');
         s0.parentNode.insertBefore(s1,s0);
         })();
         </script>
         <!--End of Tawk.to Script-->
-        @endif
     </body>
 </html>
