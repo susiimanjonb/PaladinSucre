@@ -38,14 +38,14 @@
           </div>
           
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <router-link :to="{ name: 'catalog', query: { category_slug: cat.slug } }" v-for="(cat, index) in categories.slice(0, 3)" :key="cat.id" class="group block relative overflow-hidden rounded-2xl aspect-[4/3] shadow-lg card-hover" :class="index === 0 ? 'md:col-span-2 lg:col-span-1 lg:row-span-2 aspect-auto' : ''">
+            <router-link :to="{ name: 'catalog', query: { category_slug: cat.slug } }" v-for="(cat, index) in categories.slice(0, 3)" :key="cat.id" class="group block relative overflow-hidden rounded-2xl aspect-[4/3] shadow-lg card-hover">
               <img v-if="cat.image_url" :src="cat.image_url" :alt="cat.name" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
               <div v-else class="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900"></div>
               
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
               <div class="absolute bottom-0 left-0 p-6">
                 <h3 class="font-playfair text-2xl font-bold text-white mb-2">{{ cat.name }}</h3>
-                <p class="text-gray-300 text-sm mb-4 line-clamp-2" :class="index === 0 ? 'md:max-w-md' : ''">{{ cat.description }}</p>
+                <p class="text-gray-300 text-sm mb-4 line-clamp-2">{{ cat.description }}</p>
                 <span class="inline-flex items-center text-[#D4A574] font-medium group-hover:text-white transition-colors">
                   Explorar <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </span>

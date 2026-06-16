@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
             'email'    => 'admin@paladinsucre.com',
             'password' => Hash::make('password123'),
             'role'     => 'admin',
-            'phone'    => '+591 70000000',
-            'address'  => 'Calle Bolívar #456, Sucre, Bolivia',
+            'phone'    => '+591 72890764',
+            'address'  => 'Calle Salvador #409, Sucre, Bolivia',
         ]);
 
         // Cliente de prueba
@@ -44,18 +44,21 @@ class DatabaseSeeder extends Seeder
         $jamones = Category::create([
             'name' => 'Jamones',
             'description' => 'Tradición y arte culinario combinados en jamones tiernos y deliciosos.',
+            'image' => 'https://www.paladini.com.ar/assets/img/productos/categorias/Cocidos/cover-m.jpg',
             'is_active' => true
         ]);
 
         $ahumados = Category::create([
             'name' => 'Ahumados',
             'description' => 'Embutidos ahumados minuciosamente con procesos tradicionales que resaltan sabor y aroma.',
+            'image' => 'https://st.depositphotos.com/1020804/1622/i/450/depositphotos_16225457-stock-photo-assortment-of-grilled-sausages.jpg',
             'is_active' => true
         ]);
 
         $mortadelas = Category::create([
             'name' => 'Mortadelas',
             'description' => 'Elaboradas con carnes de primera, ideales para sándwiches y picadas con texturas suaves.',
+            'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTag7iATaSeF-wWD0pJ0L0QXz6nuoxlB7SLlw&s',
             'is_active' => true
         ]);
 
