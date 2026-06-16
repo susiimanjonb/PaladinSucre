@@ -1,7 +1,7 @@
 <template>
   <div class="flex h-screen bg-gray-100 overflow-hidden font-sans">
     <!-- Sidebar -->
-    <aside :class="['admin-sidebar text-white transition-all duration-300 flex flex-col z-20 shadow-xl', sidebarOpen ? 'w-64' : 'w-20 sm:w-64 -translate-x-full sm:translate-x-0 absolute sm:relative h-full']">
+    <aside :class="['admin-sidebar text-white transition-all duration-300 flex flex-col z-20 shadow-xl overflow-hidden', sidebarOpen ? 'w-64' : 'w-20 sm:w-64 -translate-x-full sm:translate-x-0 absolute sm:relative h-full']">
       <!-- Sidebar Header -->
       <div class="h-16 flex items-center justify-between px-4 border-b border-white/10 bg-black/20">
         <div class="flex items-center gap-3 overflow-hidden">
@@ -44,10 +44,10 @@
       </nav>
 
       <!-- User/Logout bottom -->
-      <div class="p-4 border-t border-white/10 bg-black/20">
+      <div class="p-4 border-t border-white/10 bg-black/20 overflow-hidden">
         <button @click="handleLogout" class="flex items-center w-full px-2 py-2 text-red-400 hover:text-white hover:bg-red-900/50 rounded-lg transition-colors group">
           <svg class="w-5 h-5 shrink-0 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-          <span class="ml-3 font-medium">Cerrar Sesión</span>
+          <span class="ml-3 font-medium truncate">Cerrar Sesión</span>
         </button>
       </div>
     </aside>
