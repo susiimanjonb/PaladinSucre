@@ -26,7 +26,7 @@
 
           <div>
             <label for="email" class="form-label">Correo Electrónico</label>
-            <input id="email" type="email" v-model="form.email" required class="form-input" placeholder="tu@correo.com">
+            <input id="email" type="email" v-model="form.email" required class="form-input" placeholder="Correo electrónico">
           </div>
 
           <div>
