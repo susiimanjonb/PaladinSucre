@@ -47,7 +47,7 @@ class CategoryController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $data['image'] = cloudinary()->upload($request->file('image')->getRealPath(), ['folder' => 'categories'])->getSecurePath();
+            $data['image'] = cloudinary()->uploadApi()->upload($request->file('image')->getRealPath(), ['folder' => 'categories'])['secure_url'];
         }
 
         $data['slug'] = Str::slug($data['name']);
@@ -82,7 +82,7 @@ class CategoryController extends Controller
             if ($category->image && !\Illuminate\Support\Str::startsWith($category->image, 'http')) {
                 Storage::disk('public')->delete($category->image);
             }
-            $data['image'] = cloudinary()->upload($request->file('image')->getRealPath(), ['folder' => 'categories'])->getSecurePath();
+            $data['image'] = cloudinary()->uploadApi()->upload($request->file('image')->getRealPath(), ['folder' => 'categories'])['secure_url'];
         }
 
         if (isset($data['name']) && $data['name'] !== $category->name) {
