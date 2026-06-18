@@ -4,9 +4,23 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Paladín Sucre — Embutidos Artesanales</title>
-        <meta name="description" content="Embutidos artesanales de calidad en Sucre, Bolivia. Chorizos, salchichas, jamones y más con tradición desde 2009.">
+        <title>{{ $meta_title ?? 'Paladín Sucre — Embutidos Artesanales' }}</title>
+        <meta name="description" content="{{ $meta_description ?? 'Embutidos artesanales de calidad en Sucre, Bolivia. Chorizos, salchichas, jamones y más con tradición desde 2009.' }}">
         <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        
+        <!-- Open Graph / Redes Sociales -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ $meta_url ?? url()->current() }}">
+        <meta property="og:title" content="{{ $meta_title ?? 'Paladín Sucre — Embutidos Artesanales' }}">
+        <meta property="og:description" content="{{ $meta_description ?? 'Embutidos artesanales de calidad en Sucre, Bolivia. Chorizos, salchichas, jamones y más con tradición desde 2009.' }}">
+        <meta property="og:image" content="{{ $meta_image ?? asset('favicon.ico') }}">
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="{{ $meta_url ?? url()->current() }}">
+        <meta property="twitter:title" content="{{ $meta_title ?? 'Paladín Sucre — Embutidos Artesanales' }}">
+        <meta property="twitter:description" content="{{ $meta_description ?? 'Embutidos artesanales de calidad en Sucre, Bolivia. Chorizos, salchichas, jamones y más con tradición desde 2009.' }}">
+        <meta property="twitter:image" content="{{ $meta_image ?? asset('favicon.ico') }}">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         
         <!-- Google Analytics (gtag.js) -->

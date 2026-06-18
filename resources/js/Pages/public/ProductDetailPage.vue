@@ -114,6 +114,15 @@ const fetchProductData = async (slug) => {
         const { data } = await getProduct(slug);
         product.value = data;
         related.value = data.related || [];
+
+        // Dynamic SEO Update for Client-Side navigation
+        document.title = `${data.name} | Paladín Sucre`;
+        const metaDescription = document.querySelector('meta[name="description"]');
+        if (metaDescription) {
+            // Strip HTML tags for meta description if necessary, or just use description
+            const cleanDesc = data.description.replace(/<[^>]*>?/gm, '').substring(0, 150);
+            metaDescription.setAttribute('content', cleanDesc);
+        }
     } catch (e) {
         error.value = true;
     } finally {
