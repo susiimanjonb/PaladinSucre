@@ -1,16 +1,17 @@
 <template>
-  <transition name="modal">
-    <div v-if="show" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-      <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+  <Teleport to="body">
+    <transition name="modal">
+      <div v-if="show" class="fixed inset-0 z-[100] overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <!-- Background overlay -->
         <div class="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity" aria-hidden="true" @click="$emit('close')"></div>
 
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
         <!-- Modal panel -->
-        <div class="relative z-10 inline-block align-bottom bg-white rounded-xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle" :class="maxWidthClass">
+        <div class="relative z-10 inline-block align-bottom bg-white/90 backdrop-blur-xl rounded-xl text-left overflow-hidden shadow-2xl border border-white/40 transform transition-all sm:my-8 sm:align-middle" :class="maxWidthClass">
           <!-- Header -->
-          <div class="bg-gray-50 px-4 py-4 sm:px-6 flex justify-between items-center border-b border-gray-200">
+          <div class="bg-white/50 px-4 py-4 sm:px-6 flex justify-between items-center border-b border-gray-200/60">
             <h3 class="text-lg leading-6 font-medium text-gray-900 font-playfair" id="modal-title">
               {{ title }}
             </h3>
@@ -23,18 +24,19 @@
           </div>
 
           <!-- Content -->
-          <div class="bg-white px-4 pt-5 pb-4 sm:p-6">
+          <div class="px-4 pt-5 pb-4 sm:p-6">
             <slot></slot>
           </div>
 
           <!-- Footer -->
-          <div v-if="$slots.footer" class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse border-t border-gray-200">
+          <div v-if="$slots.footer" class="bg-white/50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse border-t border-gray-200/60">
             <slot name="footer"></slot>
           </div>
         </div>
       </div>
     </div>
   </transition>
+  </Teleport>
 </template>
 
 <script setup>
