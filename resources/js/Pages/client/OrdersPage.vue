@@ -203,6 +203,9 @@ import { getClientOrders, getClientOrder, uploadPaymentProof } from '../../api/o
 import StatusBadge from '../../components/common/StatusBadge.vue';
 import Pagination from '../../components/common/Pagination.vue';
 import Modal from '../../components/common/Modal.vue';
+import { useToast } from '../../stores/toast.js';
+
+const { addToast } = useToast();
 
 const orders = ref([]);
 const meta = ref(null);
@@ -243,10 +246,10 @@ const uploadProof = async () => {
         const { data } = await uploadPaymentProof(selectedOrder.value.id, formData);
         selectedOrder.value.payment_proof_url = data.payment_proof_url;
         clearFile();
-        alert('¡Comprobante enviado correctamente! Lo revisaremos pronto.');
+        addToast('¡Comprobante enviado correctamente! Lo revisaremos pronto.', 'success');
     } catch (e) {
         console.error(e);
-        alert('Error al subir el comprobante. Inténtalo de nuevo.');
+        addToast('Error al subir el comprobante. Inténtalo de nuevo.', 'error');
     } finally {
         uploading.value = false;
     }
@@ -275,7 +278,7 @@ const openOrderDetails = async (id) => {
         selectedOrder.value = data;
     } catch (e) {
         console.error(e);
-        alert('Ocurrió un error al intentar cargar los detalles del pedido. Por favor, actualiza la página.');
+        addToast('Ocurrió un error al intentar cargar los detalles del pedido. Por favor, actualiza la página.', 'error');
         showModal.value = false;
     } finally {
         loadingDetails.value = false;

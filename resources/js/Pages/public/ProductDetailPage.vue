@@ -70,7 +70,6 @@
                 Agregar al Carrito
               </button>
             </div>
-            <p v-if="addedMsg" class="mt-3 text-sm text-green-600 font-medium text-center animate-fadeInUp">¡Producto agregado al carrito!</p>
           </div>
         </div>
       </div>
@@ -93,22 +92,22 @@ import { useRoute } from 'vue-router';
 import { getProduct } from '../../api/products.js';
 import { useCart } from '../../stores/cart.js';
 import ProductCard from '../../components/product/ProductCard.vue';
+import { useToast } from '../../stores/toast.js';
 
 const route = useRoute();
 const { addItem } = useCart();
+const { addToast } = useToast();
 
 const product = ref(null);
 const related = ref([]);
 const loading = ref(true);
 const error = ref(false);
 const quantity = ref(1);
-const addedMsg = ref(false);
 
 const fetchProductData = async (slug) => {
     loading.value = true;
     error.value = false;
     quantity.value = 1;
-    addedMsg.value = false;
     
     try {
         const { data } = await getProduct(slug);
@@ -133,8 +132,7 @@ const fetchProductData = async (slug) => {
 const handleAddToCart = () => {
     if (product.value.stock > 0 && quantity.value > 0) {
         addItem(product.value, Number(quantity.value));
-        addedMsg.value = true;
-        setTimeout(() => addedMsg.value = false, 3000);
+        addToast('¡Producto agregado al carrito!', 'success');
     }
 };
 

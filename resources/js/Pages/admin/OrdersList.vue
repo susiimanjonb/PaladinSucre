@@ -220,6 +220,9 @@ import { getAdminOrders, getAdminOrder, updateOrderStatus, verifyAdminPayment, u
 import StatusBadge from '../../components/common/StatusBadge.vue';
 import Pagination from '../../components/common/Pagination.vue';
 import Modal from '../../components/common/Modal.vue';
+import { useToast } from '../../stores/toast.js';
+
+const { addToast } = useToast();
 
 const orders = ref([]);
 const meta = ref(null);
@@ -263,7 +266,7 @@ const uploadProof = async () => {
         fetchOrders(meta.value?.current_page || 1);
     } catch (e) {
         console.error(e);
-        alert('Error al subir el comprobante. Asegúrate de que sea un archivo válido (menor a 20MB).');
+        addToast('Error al subir el comprobante. Asegúrate de que sea un archivo válido (menor a 20MB).', 'error');
     } finally {
         uploadingProof.value = false;
     }
@@ -326,7 +329,7 @@ const updateStatus = async () => {
         fetchOrders(meta.value?.current_page || 1);
     } catch (e) {
         console.error(e);
-        alert('Error al actualizar el estado');
+        addToast('Error al actualizar el estado', 'error');
     } finally {
         updatingStatus.value = false;
     }
@@ -353,7 +356,7 @@ const executePaymentVerification = async () => {
         fetchOrders(meta.value?.current_page || 1);
     } catch (e) {
         console.error(e);
-        alert(e.response?.data?.message || 'Error al verificar el pago');
+        addToast(e.response?.data?.message || 'Error al verificar el pago', 'error');
     } finally {
         verifyingPayment.value = false;
     }

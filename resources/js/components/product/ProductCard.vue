@@ -41,6 +41,7 @@
 <script setup>
 import { useCart } from '../../stores/cart.js';
 import { useRouter } from 'vue-router';
+import { useToast } from '../../stores/toast.js';
 
 const props = defineProps({
     product: { type: Object, required: true }
@@ -48,11 +49,12 @@ const props = defineProps({
 
 const { addItem } = useCart();
 const router = useRouter();
+const { addToast } = useToast();
 
 const addToCart = () => {
     if (props.product.stock > 0) {
         addItem(props.product, 1);
-        // Opcional: mostrar un toast
+        addToast('¡Producto agregado al carrito!', 'success');
     }
 };
 </script>
